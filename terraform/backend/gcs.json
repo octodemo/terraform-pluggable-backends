@@ -1,0 +1,4 @@
+{
+    "bucket": "${gcp_bucket}",
+    "prefix":"${github_repository_owner}-${github_repository_name}.terraform.state"
+}
