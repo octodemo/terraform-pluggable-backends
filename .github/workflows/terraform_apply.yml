@@ -100,7 +100,7 @@ jobs:
           export_default_credentials: true
 
       - name: Sign in to Azure
-        if: github.event.inputs.backend == 'azurerm'
+        if: github.event.inputs.backend == 'azure'
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}

@@ -22,10 +22,27 @@ The [terraform/terragrunt.hcl](./terraform/terragrunt.hcl) file contains the rem
 for the desired storage backend for the state ([`gcs.json`](./terraform/backend/gcs.json) for GCP and [`azurerm.json`](./terraform/backend/azurerm.json) for Azure).
 
 
-## Using Azure backend
+## GitHub Actions Workflow
 
-TODO
+There is a [workflow](.github/workflowsterraform_apply.yml) that will configure access to the specifed state backend for Terraform as well as performing the 
+necessary authentication with the backing cloud vendor before then using Terraform to create/update a GitHub repository.
 
-## Using GCP backend
+To acheive this the terragrunt injection is used from the environment variables in effect when Terraform is executing to correctly link up to the backend. It is also
+reliant the on the default environment variables that Terraform uses the cloud vendor when attempting to connect with the cloud resource 
 
-TODO
+There is a common GitHub Actions secret that is required to acces GitHub where the repository will be created:
+- `GHEC_PROVISIONING_PAT`: the GitHub PAT that will be used to create the repository, it will need permissions to create repositories under the specified `owner`
+
+
+### Using Azure backend
+
+When using `azure` as the backend option for the Terraform worklfow you will need the following GitHub Actions Secrets defined;
+
+- `AZURE_CREDENTIALS`: The service principal JSON credentials object to authenticate as an SP against Azure and access the storage account
+
+### Using GCP backend
+
+When using `gcp` as the backend option for the Terraform workflow you will need the following GitHub Actions Secrets defined;
+
+- `GCP_PROJECT_ID`: the project id that hosts the GCS storage bucket
+- `GCP_TERRAFORM_SERVICE_ACCOUNT_KEY`: the JSON key for the service account to authenicate and access the GCS storage bucket
