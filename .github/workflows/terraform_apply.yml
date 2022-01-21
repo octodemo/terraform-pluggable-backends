@@ -73,7 +73,7 @@ jobs:
       # TF_VAR_gcs_backend_storage_bucket: ''
 
       # Directory that contains Terraform HCL to run from the checked out sources
-      TERRAFORM_WORKING_DIRECTORY: ./terraform/${{ needs.validate.outputs.terraform_backend }}
+      TERRAFORM_WORKING_DIRECTORY: ./terraform
 
     steps:
       - name: Checkout Sources
