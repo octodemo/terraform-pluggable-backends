@@ -38,7 +38,10 @@ There is a common GitHub Actions secret that is required to acces GitHub where t
 
 When using `azure` as the backend option for the Terraform worklfow you will need the following GitHub Actions Secrets defined;
 
-- `AZURE_CREDENTIALS`: The service principal JSON credentials object to authenticate as an SP against Azure and access the storage account
+- `ARM_CLIENT_ID`: the client id for the service principal
+- `ARM_CLIENT_SECRET`: the client secret for the service principal
+- `ARM_SUBSCRIPTION_ID`: the subscription id for the azure subscrition being accessed
+- `ARM_TENANT_ID`: the tenant id for the azure subscription being accessed
 
 ### Using GCP backend
 
