@@ -45,7 +45,7 @@ jobs:
             } else if (backend === 'azure') {
               core.setOutput('terraform_backend', 'azurerm');
             } else {
-              core.setFailed(`Invalid cloud backend specified '${backend}'. Must be one of 'azure' or `gcp``);
+              core.setFailed(`Invalid cloud backend specified '${backend}'. Must be one of 'azure' or 'gcp'`);
             }
 
 
