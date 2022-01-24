@@ -49,3 +49,11 @@ When using `gcp` as the backend option for the Terraform workflow you will need 
 
 - `GCP_PROJECT_ID`: the project id that hosts the GCS storage bucket
 - `GCP_TERRAFORM_SERVICE_ACCOUNT_KEY`: the JSON key for the service account to authenicate and access the GCS storage bucket
+
+
+### Using GitHub Actions Environments to separate secrets
+By utilizing GitHub Actions Environments, the secrets relating to the target backends above can be isolated so that Azure related secrets are not shared with GCP related invocations and vice versa.
+
+To do this an environment for each backend was created `azurerm` and `gcs` accordingly and the cloud specific secrets defined there.
+
+![Screenshot 2022-01-24 at 17 01 56](https://user-images.githubusercontent.com/681306/150831195-e7e3a805-cc19-4fd6-88ee-b8345889e00c.png)
