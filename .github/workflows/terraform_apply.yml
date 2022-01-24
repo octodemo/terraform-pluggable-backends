@@ -56,6 +56,10 @@ jobs:
     needs:
       - validate
 
+    # Using GitHub Actions Environment to encapsulate access to the secrets for the backend as 
+    # there is no need to provide GCP credentials to Azure and vice versa
+    environment: ${{ needs.validate.outputs.terraform_backend }}
+
     timeout-minutes: 3
 
     env:
@@ -68,6 +72,13 @@ jobs:
       # # Azure specific settings
       # TF_VAR_azure_storage_account_resource_group: ''
       # TF_VAR_azure_storage_account_name: ''
+
+      # Azure env vars required for Terraform to reach Azure storage backend. This could also be done using 
+      # a storage account and access key.
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
       # # GCP specific settings
       # TF_VAR_gcs_backend_storage_bucket: ''
